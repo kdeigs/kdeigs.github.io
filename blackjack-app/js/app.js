@@ -1,6 +1,7 @@
 const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
-let bust = false;
+let playerBust = false;
+let dealerBust = false;
 
 const deal = () => { //Deals Cards to Player and Dealer
     let $playerCards = $('#playerCards');
@@ -18,23 +19,53 @@ const deal = () => { //Deals Cards to Player and Dealer
     let $cardTwo = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
     randomCard = cards[Math.floor(Math.random()*12)];
 
-    let $dealerCardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
-    randomCard = cards[Math.floor(Math.random()*12)];
-    let $dealerCardTwo = $('<div>').addClass('cardBack').attr('id', randomCard);
-
-    $('#dealerCards').append($dealerCardOne, $dealerCardTwo);
+    dealerDeal();
 
     $playerCards.append($cardOne, $cardTwo);
     $buttons.append($hitButton, $stayButton);
 }
 
+const dealerDeal = () => {
+    let randomCard = cards[Math.floor(Math.random()*12)];
+    let $dealerCardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    randomCard = cards[Math.floor(Math.random()*12)];
+    let $dealerCardTwo = $('<div>').addClass('cardBack').attr('id', randomCard);
+    $('#dealerCards').append($dealerCardOne, $dealerCardTwo);
+    while(calculate($('#dealerCards')) < 17){
+        randomCard = cards[Math.floor(Math.random()*12)];
+        let $dealerCard = $('<div>').addClass('cardBack').attr('id', randomCard);
+        $('#dealerCards').append($dealerCard);
+    }
+    if(calculate($('#dealerCards')) > 21){
+        dealerBust = true;
+    }
+    
+}
+
 const hit = () => {
-    if(!bust){
+    if(!playerBust){
         let randomCard = cards[Math.floor(Math.random()*12)];
         let $card = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
         $('#playerCards').append($card);
-        calculate($('#playerCards'));
+        if(calculate($('#playerCards')) > 21){
+            bust();
+        }
     }
+}
+
+const bust = () => {
+    playerBust = true;
+    $('#hit').remove();
+    $('#stay').remove();
+
+    let $deal = $('<button>').text('Deal').attr('id', 'deal');
+    $deal.on('click', () => {
+        playerBust = false;
+        $('.card').remove();
+        $('.cardBack').remove();
+        deal();
+    });
+    $('#buttons').append($deal);
 }
 
 const stay = () => {
@@ -67,6 +98,17 @@ const calculate = (cardStack) => {
     }
 }
 
+const calcWin = () => {
+    if(dealerBust && !playerBust){
+        return 'player';
+    }else if (!dealerBust && playerBust){
+        return 'dealer'
+    }else if(calculate($('#playerCards')) > calculate($('#dealerCards'))){
+        return 'player';
+    }else{
+        return 'dealer'
+    }
+}
 $(() => {
     $('#deal').on('click', deal);
 });
