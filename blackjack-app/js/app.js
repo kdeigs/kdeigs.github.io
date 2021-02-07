@@ -2,17 +2,28 @@ const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 let bust = false;
 
-const deal = () => {
+const deal = () => { //Deals Cards to Player and Dealer
     let $playerCards = $('#playerCards');
     let $buttons = $('#buttons')
     $('#deal').remove();
+
     let $hitButton = $('<button>').text('Hit').attr('id', 'hit');
     $hitButton.on('click', hit);
     let $stayButton = $('<button>').text('Stay').attr('id', 'stay');
+    $stayButton.on('click', stay);
+
     let randomCard = cards[Math.floor(Math.random()*12)];
     let $cardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
     randomCard = cards[Math.floor(Math.random()*12)];
     let $cardTwo = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    randomCard = cards[Math.floor(Math.random()*12)];
+
+    let $dealerCardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    randomCard = cards[Math.floor(Math.random()*12)];
+    let $dealerCardTwo = $('<div>').addClass('cardBack').attr('id', randomCard);
+
+    $('#dealerCards').append($dealerCardOne, $dealerCardTwo);
+
     $playerCards.append($cardOne, $cardTwo);
     $buttons.append($hitButton, $stayButton);
 }
@@ -22,12 +33,16 @@ const hit = () => {
         let randomCard = cards[Math.floor(Math.random()*12)];
         let $card = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
         $('#playerCards').append($card);
-        calculate();
+        calculate($('#playerCards'));
     }
 }
 
-const calculate = () => {
-    $cardDivs = $('.card');
+const stay = () => {
+    calculate($('#playerCards'));
+}
+
+const calculate = (cardStack) => {
+    $cardDivs = cardStack.children()
     let max = 0;
     let min = 0;
     let actualScore = 0;
@@ -47,9 +62,6 @@ const calculate = () => {
     console.log(`Min: ${min} Max: ${max}`);
     if(max <= 21){
         return max;
-    }else if (min > 21){
-        bust = true;
-        return min;
     }else{
         return min;
     }
