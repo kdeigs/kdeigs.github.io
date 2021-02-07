@@ -40,12 +40,16 @@ const calculate = () => {
             max += 11;
             min += 1;
         }else{
-            max += itemId;
-            min += itemId;
+            max += parseInt(itemId);
+            min += parseInt(itemId);
         }
     }
+    console.log(`Min: ${min} Max: ${max}`);
     if(max <= 21){
         return max;
+    }else if (min > 21){
+        bust = true;
+        return min;
     }else{
         return min;
     }
