@@ -1,14 +1,32 @@
-body {
+h1 {
+    text-align: center;
+}
+
+nav {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+body {
     align-content: center;
-    background-image: radial-gradient(#696969, #d3d3d3);
+    background-color: #5CDB95;
+}
+
+.navIcon {
+    width: 50px;
+    margin: 25px;
 }
 
 #container {
     width: 800px;
     height: 800px;
 }
+
 .card {
     background-color: white;
     height: 150px;
