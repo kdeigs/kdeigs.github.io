@@ -6,7 +6,7 @@ let dealerBust = false;
 const deal = () => { //Deals Cards to Player and Dealer
     $('#deal').remove(); //Removes Deal Button
     playerDeal();
-    dealerDeal();
+    dealerInitialDeal();
     addHitStayButtons();
 }
 
@@ -27,7 +27,7 @@ const playerDeal = () => { //Deals 2 cards to the player
     randomCard = cards[Math.floor(Math.random()*12)];
     let $cardTwo = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
 
-    ('#playerCards').append($cardOne, $cardTwo);
+    $('#playerCards').append($cardOne, $cardTwo);
 }
 
 const dealerInitialDeal = () => { //Deals the initial 2 cards to the dealer
@@ -41,9 +41,10 @@ const dealerInitialDeal = () => { //Deals the initial 2 cards to the dealer
 }
 
 const dealerPlay = () => { //Deals cards until the dealer hits 17 or higher
+    showDealer();
     while(calculate($('#dealerCards')) < 17){
         randomCard = cards[Math.floor(Math.random()*12)];
-        let $dealerCard = $('<div>').addClass('cardBack').attr('id', randomCard);
+        let $dealerCard = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
         $('#dealerCards').append($dealerCard);
     }
     if(calculate($('#dealerCards')) > 21){
@@ -57,8 +58,11 @@ const hit = () => { //hits the player with another card if they haven't already 
         let $card = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
 
         $('#playerCards').append($card);
-        if(calculate($('#playerCards')) > 21){
+        if(calculate($('#playerCards')) > 21){ //Busts if the player is over 21
             playerBust = true;
+            showDealer();
+            showWinner();
+            reset();
         }
     }
 }
@@ -106,9 +110,8 @@ const showWinner = () => { //Displays the winnner on the screen using the calcWi
 }
 
 const stay = () => { //Needs to be refactored into different functions
-    calculate($('#playerCards'));
+    dealerPlay();
     showWinner();
-    showDealer();
     reset();
 }
 
