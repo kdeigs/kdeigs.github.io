@@ -1,0 +1,45 @@
+/*Code idea from mitrosin on jsfiddle.com link: http://jsfiddle.net/mitrosin/xb9edv64/*/
+h3 {
+    text-align: center;
+    margin: 50px;
+}
+
+main {
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#red {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 0 100px 0 0;
+}
+
+#green {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border-radius: 100px 0 0 0;
+}
+
+#blue {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border-radius: 0 0 100px 0;
+}
+
+#yellow {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 0 0 0 100px;
+}

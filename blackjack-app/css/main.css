@@ -1,17 +1,26 @@
 body {
-    background-color: #44318D;
+    height: 100%;
     margin: 0px;
+    background-image: url('../Image_Assets/homepage/cool-background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 header{
     display: flex;
-    background-color: #2A1B3D;
     margin: 0px;
     margin-bottom: 50px;
     padding: 0px;
 }
 
-h2 {
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+h2, h3 {
     text-align: center;
 }
 
@@ -23,13 +32,14 @@ main {
 nav {
     display: flex;
     align-content: center;
-    width: 100%;
     margin: 0px;
-    border-radius: 25px;
 }
 
+article {
+    text-align: center;
+}
 nav a {
-    color: #A4B3B6;
+    color: #3C1874;
     padding: 30px;
     font-size: 1em;
     text-decoration: none;
@@ -38,11 +48,15 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #44318D;
+    color: #DE354C;
 }
 
 .game {
     text-align: center;
+}
+
+#blackjack {
+    width: 60%;
 }
 
 /* Blackjack styling */
@@ -50,8 +64,10 @@ nav a:hover {
     width: 800px;
     height: 800px;
     background-color: darkgreen;
-    border: 5px solid #2A1B3D;
+    border: 5px solid #3C1874;
     text-align: center;
+    box-shadow: 5px 10px rgba(60, 24, 116, 0.5);
+
 }
 
 .card {
