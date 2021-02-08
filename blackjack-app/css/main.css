@@ -1,7 +1,14 @@
 body {
-    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-image: radial-gradient(#696969, #d3d3d3);
 }
 
+#container {
+    width: 800px;
+    height: 800px;
+}
 .card {
     background-color: white;
     height: 150px;
