@@ -1,4 +1,5 @@
-console
+let currentComputerSequence = [];
+let currentPlayerSequence = [];
 const startGame = () => {
     $('#start').remove();
     $('#counter').text('3');
@@ -15,15 +16,15 @@ const startGame = () => {
 }
 
 const createSequence = (len) => {
-    let currentSequence = [];
+    currentComputerSequence = [];
     for(let i = 0; i < len; i++){
-        currentSequence.push(Math.floor(Math.random()*4));
+        currentComputerSequence.push(Math.floor(Math.random()*4));
     }
-    displaySequence(0, currentSequence);
+    displaySequence(0);
 }
 
-const displaySequence = (currentIndex, seqArray) => {
-    switch(seqArray[currentIndex]){
+const displaySequence = (currentIndex) => {
+    switch(currentComputerSequence[currentIndex]){
         case 0:
             $('#green').css('background-color', 'lightGreen');
             break;
@@ -38,19 +39,65 @@ const displaySequence = (currentIndex, seqArray) => {
             break;
     }
 
-    setTimeout(nextSequence(currentIndex, seqArray), 1000);
+    setTimeout(() => {
+        nextSequence(currentIndex);
+    }, 1000);
 }
 
-const nextSequence = (currentIndex, seqArray) => {
+const nextSequence = (currentIndex) => {
+    resetColors();
+    if(currentComputerSequence.length === currentIndex+1){
+        playerTurn();
+    }else{
+        displaySequence(currentIndex++);
+    }
+}
+
+const playerTurn = () => {
+    let currentPlayerSequence = [];
+    $('#green').on('click', () => {
+        if(currentPlayerSequence.length < currentComputerSequence.length){
+            resetColors();
+            $('#green').css('background-color', 'lightGreen');
+            currentPlayerSequence.push(0);
+        }
+    });
+    $('#red').on('click', () => {
+        if(currentPlayerSequence.length < currentComputerSequence.length){
+            resetColors();
+            $('#red').css('background-color', 'pink');
+            currentPlayerSequence.push(1);
+        }
+    });
+    $('#yellow').on('click', () => {
+        if(currentPlayerSequence.length < currentComputerSequence.length){
+            resetColors();
+            $('#yellow').css('background-color', 'lightYellow');
+            currentPlayerSequence.push(2);
+        }
+    });
+    $('#blue').on('click', () => {
+        if(currentPlayerSequence.length < currentComputerSequence.length){
+            resetColors();
+            $('#blue').css('background-color', 'lightBlue');
+            currentPlayerSequence.push(3);
+        }
+    });
+
+    while(currentPlayerSequence.length < currentComputerSequence.length){
+        setTimeout(() =>{}, 100);
+    }
+
+    compareAnswers();
+}
+
+const compareAnswers()
+
+const resetColors = () => {
     $('#green').css('background-color', 'green');
     $('#red').css('background-color', 'red');
     $('#yellow').css('background-color', 'yellow');
     $('#blue').css('background-color', 'blue');
-    if(seqArray.length === currentIndex+1){
-        console.log('hello');
-    }else{
-        displaySequence(currentIndex++, seqArray);
-    }
 }
 
 $(() => {
