@@ -3,9 +3,8 @@ body {
 }
 
 .card {
-    height: 200px;
-    width: 100px;
     background-color: white;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,8 +13,7 @@ body {
 }
 
 .cardBack {
-    height: 200px;
-    width: 100px;
+    height: 150px;
     background-color: black;
     display: flex;
     justify-content: center;

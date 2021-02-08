@@ -1,7 +1,10 @@
 const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+const suits = ['C', 'D', 'H', 'S'];
+const colors = ['blue', 'gray', 'green', 'purple', 'red', 'yellow'];
 
 let playerBust = false;
 let dealerBust = false;
+let currentColor = 'red';
 
 const deal = () => { //Deals Cards to Player and Dealer
     $('#deal').remove(); //Removes Deal Button
@@ -22,20 +25,25 @@ const addHitStayButtons = () => { //Adds hit and stay buttons to the page
 
 const playerDeal = () => { //Deals 2 cards to the player
     let randomCard = cards[Math.floor(Math.random()*12)];
-    let $cardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    let randomSuit = suits[Math.floor(Math.random()*4)];
+    let $cardOne = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
 
     randomCard = cards[Math.floor(Math.random()*12)];
-    let $cardTwo = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    randomSuit = suits[Math.floor(Math.random()*4)];
+    let $cardTwo = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
+
 
     $('#playerCards').append($cardOne, $cardTwo);
 }
 
 const dealerInitialDeal = () => { //Deals the initial 2 cards to the dealer
     let randomCard = cards[Math.floor(Math.random()*12)];
-    let $dealerCardOne = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+    let randomSuit = suits[Math.floor(Math.random()*4)];
+    let $dealerCardOne = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
 
     randomCard = cards[Math.floor(Math.random()*12)];
-    let $dealerCardTwo = $('<div>').addClass('cardBack').attr('id', randomCard);
+    randomSuit = suits[Math.floor(Math.random()*4)];
+    let $dealerCardTwo = $('<img>').attr('src', `./Cards/${currentColor}_back.png`).addClass('cardBack').attr('id', randomCard);
 
     $('#dealerCards').append($dealerCardOne, $dealerCardTwo);
 }
@@ -43,8 +51,9 @@ const dealerInitialDeal = () => { //Deals the initial 2 cards to the dealer
 const dealerPlay = () => { //Deals cards until the dealer hits 17 or higher
     showDealer();
     while(calculate($('#dealerCards')) < 17){
-        randomCard = cards[Math.floor(Math.random()*12)];
-        let $dealerCard = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+        let randomCard = cards[Math.floor(Math.random()*12)];
+        let randomSuit = suits[Math.floor(Math.random()*4)];
+        let $dealerCard = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
         $('#dealerCards').append($dealerCard);
     }
     if(calculate($('#dealerCards')) > 21){
@@ -55,7 +64,8 @@ const dealerPlay = () => { //Deals cards until the dealer hits 17 or higher
 const hit = () => { //hits the player with another card if they haven't already bust
     if(!playerBust){
         let randomCard = cards[Math.floor(Math.random()*12)];
-        let $card = $('<div>').text(randomCard).addClass('card').attr('id', randomCard);
+        let randomSuit = suits[Math.floor(Math.random()*4)];
+        let $card = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
 
         $('#playerCards').append($card);
         if(calculate($('#playerCards')) > 21){ //Busts if the player is over 21
@@ -68,9 +78,10 @@ const hit = () => { //hits the player with another card if they haven't already 
 }
 
 const showDealer = () => { //Reveals the dealers cards that are currently hidden
+    let randomSuit = suits[Math.floor(Math.random()*4)];
     console.log($('#dealerCards').children());
     for(let item of ($('#dealerCards').children())){
-        $(item).text($(item).attr('id')).removeClass('cardBack').addClass('card');
+        $(item).removeClass('cardBack').addClass('card').attr('src', `./Cards/${$(item).attr('id')}${randomSuit}.png`);
     }
 }
 
