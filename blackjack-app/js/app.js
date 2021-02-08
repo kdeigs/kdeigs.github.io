@@ -53,14 +53,21 @@ const hit = () => {
     }
 }
 
-const bust = () => {
-    playerBust = true;
+const showDealer = () => {
+    console.log($('#dealerCards').children());
+    for(let item of ($('#dealerCards').children())){
+        $(item).text($(item).attr('id')).removeClass('cardBack').addClass('card');
+    }
+}
+
+const reset = () => {
     $('#hit').remove();
     $('#stay').remove();
 
     let $deal = $('<button>').text('Deal').attr('id', 'deal');
     $deal.on('click', () => {
         playerBust = false;
+        $('#winner').remove();
         $('.card').remove();
         $('.cardBack').remove();
         deal();
@@ -68,8 +75,24 @@ const bust = () => {
     $('#buttons').append($deal);
 }
 
+const bust = () => {
+    playerBust = true;
+    showDealer();
+    showWinner();
+    reset();
+}
+
+const showWinner = () => {
+    let winner = calcWin();
+    $winnerCard = $('<h2>').text(`The ${winner} is the winner!`).attr('id', 'winner');
+    $('#winnerCard').append($winnerCard);
+}
+
 const stay = () => {
     calculate($('#playerCards'));
+    showWinner();
+    showDealer();
+    reset();
 }
 
 const calculate = (cardStack) => {
