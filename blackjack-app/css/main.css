@@ -1,30 +1,57 @@
-h1 {
-    text-align: center;
+body {
+    background-color: #44318D;
+    margin: 0px;
 }
 
-nav {
+header{
     display: flex;
-    flex-direction: column;
+    background-color: #2A1B3D;
+    margin: 0px;
+    margin-bottom: 50px;
+    padding: 0px;
+}
+
+h2 {
+    text-align: center;
 }
 
 main {
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: center;
 }
 
-body {
+nav {
+    display: flex;
     align-content: center;
-    background-color: #5CDB95;
+    width: 100%;
+    margin: 0px;
+    border-radius: 25px;
 }
 
-.navIcon {
-    width: 50px;
-    margin: 25px;
+nav a {
+    color: #A4B3B6;
+    padding: 30px;
+    font-size: 1em;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0px;
 }
 
-#container {
+nav a:hover {
+    background-color: #44318D;
+}
+
+.game {
+    text-align: center;
+}
+
+/* Blackjack styling */
+#gameContainer {
     width: 800px;
     height: 800px;
+    background-color: darkgreen;
+    border: 5px solid #2A1B3D;
+    text-align: center;
 }
 
 .card {
@@ -50,4 +77,6 @@ body {
 .cardStack {
     display: flex;
     flex-wrap: nowrap;
+    display: flex;
+    justify-content: center;
 }
