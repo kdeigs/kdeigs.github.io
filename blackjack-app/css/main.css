@@ -1,11 +1,14 @@
 body {
     height: 100%;
     margin: 0px;
-    background-image: url('../Image_Assets/homepage/cool-background.png');
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    /* Background code from css-tricks.com */
+    background-image: url(../Image_Assets/homepage/triangle-mosaic.png);
+    /*Background PNG from https://www.toptal.com/ */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-attachment: fixed;
 }
 
 header{
@@ -18,6 +21,7 @@ header{
 footer {
     position: fixed;
     bottom: 0;
+    right: 0;
 }
 
 h2, h3 {
@@ -26,13 +30,22 @@ h2, h3 {
 
 main {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 nav {
     display: flex;
     align-content: center;
+    flex-direction: column;
     margin: 0px;
+    background-color: #5CDB95;
+    position: absolute;
+    height: 100%;
+    width: 5%;
+}
+
+nav img {
+    width: 100%;
 }
 
 article {
@@ -60,39 +73,3 @@ nav a:hover {
 }
 
 /* Blackjack styling */
-#gameContainer {
-    width: 800px;
-    height: 800px;
-    background-color: darkgreen;
-    border: 5px solid #3C1874;
-    text-align: center;
-    box-shadow: 5px 10px rgba(60, 24, 116, 0.5);
-
-}
-
-.card {
-    background-color: white;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    margin: 25px;
-}
-
-.cardBack {
-    height: 150px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-    margin: 25px;
-}
-
-.cardStack {
-    display: flex;
-    flex-wrap: nowrap;
-    display: flex;
-    justify-content: center;
-}

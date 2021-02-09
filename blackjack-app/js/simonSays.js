@@ -16,11 +16,8 @@ const startGame = () => {
     }, 1000)
 }
 
-const createSequence = (len) => {
-    currentComputerSequence = []
-    for(let i = 0; i < len; i++){
-        currentComputerSequence.push((Math.floor(Math.random()*4)));
-    }
+const createSequence = () => {
+    currentComputerSequence.push((Math.floor(Math.random()*4)));
     displaySequence(0);
 }
 
@@ -42,7 +39,10 @@ const displaySequence = (currentIndex) => {
     }
 
     setTimeout(() => {
-        nextSequence(currentIndex);
+        setTimeout(() => {
+            nextSequence(currentIndex);
+        }, 1000)
+        resetColors();
     }, 1000);
 }
 
@@ -52,7 +52,8 @@ const nextSequence = (currentIndex) => {
         currentPlayerSequence = [];
         playerTurn();
     }else{
-        displaySequence(currentIndex++);
+        currentIndex++;
+        displaySequence(currentIndex);
     }
 }
 
@@ -66,6 +67,7 @@ const playerTurn = () => {
         $('#green').css('background-color', 'lightGreen');
         currentPlayerSequence.push(0);
         console.log(0);
+        setTimeout(resetColors, 1000);
         if(currentPlayerSequence.length === currentComputerSequence.length){
             setTimeout(compareAnswers, 1000);
         }
@@ -75,6 +77,7 @@ const playerTurn = () => {
         $('#red').css('background-color', 'pink');
         currentPlayerSequence.push(1);
         console.log(1);
+        setTimeout(resetColors, 1000);
         if(currentPlayerSequence.length === currentComputerSequence.length){
             setTimeout(compareAnswers, 1000);
         }
@@ -84,6 +87,7 @@ const playerTurn = () => {
         $('#yellow').css('background-color', 'lightYellow');
         currentPlayerSequence.push(2);
         console.log(2);
+        setTimeout(resetColors, 1000);
         if(currentPlayerSequence.length === currentComputerSequence.length){
             setTimeout(compareAnswers, 1000);
         }
@@ -93,6 +97,7 @@ const playerTurn = () => {
         $('#blue').css('background-color', 'lightBlue');
         currentPlayerSequence.push(3);
         console.log(3);
+        setTimeout(resetColors, 1000);
         if(currentPlayerSequence.length === currentComputerSequence.length){
             setTimeout(compareAnswers, 1000);
         }
@@ -118,7 +123,9 @@ const compareAnswers = () => {
                     $('#counter').text('1');
                     setTimeout(() => {
                         $('#counter').text('');
-                        createSequence(currentPlayerSequence.length++);
+                        let nextValue = currentPlayerSequence.length;
+                        nextValue++;
+                        createSequence(nextValue);
                     }, 1000)
                 }, 1000)
             }, 1000)
