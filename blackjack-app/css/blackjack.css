@@ -1,10 +1,16 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #gameContainer {
     width: 800px;
     height: 800px;
     background-color: darkgreen;
-    border: 5px solid #3C1874;
+    border: 5px solid #5cdb95;
     text-align: center;
-    box-shadow: 5px 10px rgba(60, 24, 116, 0.5);
+    box-shadow: 5px 10px rgba(92, 219, 149, 0.5);
 
 }
 

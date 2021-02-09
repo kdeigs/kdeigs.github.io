@@ -1,7 +1,6 @@
 body {
     height: 100%;
     margin: 0px;
-    display: flex;
     /* Background code from css-tricks.com */
     background-image: url(../Image_Assets/homepage/triangle-mosaic.png);
     /*Background PNG from https://www.toptal.com/ */
@@ -10,6 +9,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
 
 header{
     display: flex;
@@ -26,11 +26,6 @@ footer {
 
 h2, h3 {
     text-align: center;
-}
-
-main {
-    display: flex;
-    justify-content: left;
 }
 
 nav {
@@ -71,5 +66,3 @@ nav a:hover {
 #blackjack {
     width: 60%;
 }
-
-/* Blackjack styling */
