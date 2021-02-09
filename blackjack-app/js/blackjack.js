@@ -123,7 +123,11 @@ const showWinner = () => { //Displays the winnner on the screen using the calcWi
 }
 
 const stay = () => { //Needs to be refactored into different functions
-    dealerPlay();
+    if(!playerBust){
+        dealerPlay();
+    }else{
+        showDealer();
+    }
     showWinner();
     reset();
 }

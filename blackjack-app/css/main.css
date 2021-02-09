@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+
 body {
     height: 100%;
     margin: 0px;
+    display: flex;
+    justify-content: flex-start;
     /* Background code from css-tricks.com */
     background-image: url(../Image_Assets/homepage/triangle-mosaic.png);
     /*Background PNG from https://www.toptal.com/ */
@@ -8,14 +12,13 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: 'Alegreya', serif;
+
 }
 
-
-header{
-    display: flex;
-    margin: 0px;
-    margin-bottom: 50px;
-    padding: 0px;
+h1{
+    text-align: center;
+    font-size: 3em;
 }
 
 footer {
@@ -34,18 +37,16 @@ nav {
     flex-direction: column;
     margin: 0px;
     background-color: #5CDB95;
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 5%;
 }
 
 nav img {
-    width: 100%;
-}
-
-article {
+    width: 120%;
     text-align: center;
 }
+
 nav a {
     color: #3C1874;
     padding: 30px;
@@ -56,11 +57,35 @@ nav a {
 }
 
 nav a:hover {
-    color: #DE354C;
+    background-color: #379683;
 }
 
-.game {
-    text-align: center;
+.game{
+    box-sizing: border-box;
+    border: 5px solid #5cdb95;
+    width: 50%;
+    height: auto;
+    box-shadow: 10px 10px rgba(92, 219, 149, 0.5);
+
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    right: 0;
+}
+
+#listOfGames{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    right: 0;
+}
+
+.game:hover{
+    opacity: 50%;
 }
 
 #blackjack {
