@@ -8,6 +8,7 @@ let playerBust = false;
 let dealerBust = false;
 let currentColor = 'red';
 
+
 const deal = () => { //Deals Cards to Player and Dealer
     $('#deal').remove(); //Removes Deal Button
     playerDeal();
@@ -16,10 +17,10 @@ const deal = () => { //Deals Cards to Player and Dealer
 }
 
 const addHitStayButtons = () => { //Adds hit and stay buttons to the page
-    let $hitButton = $('<button>').text('Hit').attr('id', 'hit');
+    let $hitButton = $('<button>').text('Hit').attr('id', 'hit').addClass('glow-on-hover');
     $hitButton.on('click', hit);
 
-    let $stayButton = $('<button>').text('Stay').attr('id', 'stay');
+    let $stayButton = $('<button>').text('Stay').attr('id', 'stay').addClass('glow-on-hover');
     $stayButton.on('click', stay);
 
     $('#buttons').append($hitButton, $stayButton);

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100&display=swap');
 
 body {
     height: 100%;
+    font-family: cursive;
     margin: 0px;
     display: inline-block;
     color: #E7DFDD;
@@ -186,4 +188,9 @@ main{
 
 #blackjack {
     width: 60%;
+}
+
+#scoreboard {
+    background-color: #E7DFDD;
+    color: #0e0b16
 }
