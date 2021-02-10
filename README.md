@@ -1,3 +1,3 @@
 # kdeigs.github.io
 
-[Link to Blackjack](blackjack-app/index.html)
+[Link to Blackjack](blackjack-app/home.html)
