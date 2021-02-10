@@ -1,8 +1,11 @@
 let currentComputerSequence = [];
 let currentPlayerSequence = [];
+let currentRound;
 
 const startGame = () => {
+    currentComputerSequence = [];
     $('#start').remove();
+    $('#score').text('SCORE: 0');
     $('#counter').text('3');
     setTimeout(() => {
         $('#counter').text('2');
@@ -10,7 +13,7 @@ const startGame = () => {
             $('#counter').text('1');
             setTimeout(() => {
                 $('#counter').text('');
-                createSequence(1);
+                createSequence();
             }, 1000)
         }, 1000)
     }, 1000)
@@ -19,6 +22,13 @@ const startGame = () => {
 const createSequence = () => {
     currentComputerSequence.push((Math.floor(Math.random()*4)));
     displaySequence(0);
+}
+
+const increaseScore = () => {
+    const $scoreCard = $('#score')
+    let currentScore = parseInt(($scoreCard.text()).split(' ')[1]);
+    currentScore++;
+    $scoreCard.text(`SCORE: ${currentScore}`);
 }
 
 const displaySequence = (currentIndex) => {
@@ -41,9 +51,9 @@ const displaySequence = (currentIndex) => {
     setTimeout(() => {
         setTimeout(() => {
             nextSequence(currentIndex);
-        }, 1000)
+        }, 500)
         resetColors();
-    }, 1000);
+    }, 500);
 }
 
 const nextSequence = (currentIndex) => {
@@ -58,17 +68,14 @@ const nextSequence = (currentIndex) => {
 }
 
 const playerTurn = () => {
-    $('#green').off();
-    $('#red').off();
-    $('#yellow').off();
-    $('#blue').off();
     $('#green').on('click', () => {
         resetColors();
         $('#green').css('background-color', 'lightGreen');
         currentPlayerSequence.push(0);
         console.log(0);
-        setTimeout(resetColors, 1000);
+        setTimeout(resetColors, 500);
         if(currentPlayerSequence.length === currentComputerSequence.length){
+            turnOffPlayerTurn();
             setTimeout(compareAnswers, 1000);
         }
     });
@@ -77,8 +84,9 @@ const playerTurn = () => {
         $('#red').css('background-color', 'pink');
         currentPlayerSequence.push(1);
         console.log(1);
-        setTimeout(resetColors, 1000);
+        setTimeout(resetColors, 500);
         if(currentPlayerSequence.length === currentComputerSequence.length){
+            turnOffPlayerTurn();
             setTimeout(compareAnswers, 1000);
         }
     });
@@ -87,8 +95,9 @@ const playerTurn = () => {
         $('#yellow').css('background-color', 'lightYellow');
         currentPlayerSequence.push(2);
         console.log(2);
-        setTimeout(resetColors, 1000);
+        setTimeout(resetColors, 500);
         if(currentPlayerSequence.length === currentComputerSequence.length){
+            turnOffPlayerTurn();
             setTimeout(compareAnswers, 1000);
         }
     });
@@ -97,11 +106,19 @@ const playerTurn = () => {
         $('#blue').css('background-color', 'lightBlue');
         currentPlayerSequence.push(3);
         console.log(3);
-        setTimeout(resetColors, 1000);
+        setTimeout(resetColors, 500);
         if(currentPlayerSequence.length === currentComputerSequence.length){
+            turnOffPlayerTurn();
             setTimeout(compareAnswers, 1000);
         }
     });
+}
+
+const turnOffPlayerTurn = () => { 
+    $('#green').off();
+    $('#red').off();
+    $('#yellow').off();
+    $('#blue').off();
 }
 
 const compareAnswers = () => {
@@ -114,6 +131,7 @@ const compareAnswers = () => {
         }
     }
     if(won){
+        increaseScore();
         $('#counter').text('Correct!');
         setTimeout(() => {
             $('#counter').text('3');
@@ -123,16 +141,14 @@ const compareAnswers = () => {
                     $('#counter').text('1');
                     setTimeout(() => {
                         $('#counter').text('');
-                        let nextValue = currentPlayerSequence.length;
-                        nextValue++;
-                        createSequence(nextValue);
+                        createSequence();
                     }, 1000)
                 }, 1000)
             }, 1000)
         }, 1000)
     }else{
         $('#counter').text('Sorry you were incorrect!');
-        const $playAgain = $('<button>').text('Play Again').on('click', startGame).attr('id', 'start');
+        const $playAgain = $('<button>').text('Play Again').on('click', startGame).attr('id', 'start').addClass('glow-on-hover');
         $('#container').append($playAgain);
     }
 }

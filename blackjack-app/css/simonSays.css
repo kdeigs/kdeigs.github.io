@@ -12,36 +12,45 @@ main {
 }
 
 #container {
-    width: 200px;
+    width: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+.button {
+    border: 10px solid black;
+    box-shadow: 5px 5px black;
+    margin: 10px;
+}
+
+
+
 #red {
     width: 100px;
     height: 100px;
     background-color: red;
-    border-radius: 0 100px 0 0;
+    /* border-radius: 0 100px 0 0; */
 }
 
 #green {
     width: 100px;
     height: 100px;
     background-color: green;
-    border-radius: 100px 0 0 0;
+    /* border-radius: 100px 0 0 0; */
 }
 
 #blue {
     width: 100px;
     height: 100px;
     background-color: blue;
-    border-radius: 0 0 100px 0;
+    /* border-radius: 0 0 100px 0; */
 }
 
 #yellow {
     width: 100px;
     height: 100px;
     background-color: yellow;
-    border-radius: 0 0 0 100px;
+    /* border-radius: 0 0 0 100px; */
 }
+

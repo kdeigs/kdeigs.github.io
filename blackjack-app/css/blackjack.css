@@ -8,9 +8,9 @@ main {
     width: 800px;
     height: 800px;
     background-color: darkgreen;
-    border: 5px solid #5cdb95;
+    border: 5px solid #A239CA;
     text-align: center;
-    box-shadow: 5px 10px rgba(92, 219, 149, 0.5);
+    box-shadow: 5px 10px rgba(162, 57, 202, 0.5);
 
 }
 
