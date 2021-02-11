@@ -114,6 +114,8 @@ const showWinner = () => { //Displays the winnner on the screen using the calcWi
     }else{
         $winnerCard = $('<h2>').text(`The ${winner} is the winner!`).attr('id', 'winner');
     }
+
+    increaseBlackjackWins(winner);
     
     $('#winnerCard').append($winnerCard);
 }

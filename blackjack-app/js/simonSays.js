@@ -29,6 +29,7 @@ const increaseScore = () => {
     let currentScore = parseInt(($scoreCard.text()).split(' ')[1]);
     currentScore++;
     $scoreCard.text(`SCORE: ${currentScore}`);
+    setSimonSaysHighScore(currentScore);
 }
 
 const displaySequence = (currentIndex) => {

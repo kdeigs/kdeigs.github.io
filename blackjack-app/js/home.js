@@ -1,16 +1,37 @@
-let currentWins = localStorage.getItem('blackjackWins');
-if(currentWins == null){
-    currentWins = 0;
-    console.log('Making new Profile');
-    localStorage.setItem('blackjackWins', currentWins);
-}else{
-    console.log('Profile Already Exists');
+let blackjackWins = localStorage.getItem('blackjackWins');
+let simonSaysScore = localStorage.getItem('simonSaysScore');
+
+if(simonSaysScore == null){
+    simonSaysScore = 0;
+}
+
+if(blackjackWins == null){
+    blackjackWins = 0;
+}
+
+increaseBlackjackWins = (winner) => {
+    if(winner === 'player'){
+        currentWins++;
+        localStorage.setItem('blackjackWins', currentWins);
+    }
+    updateScoreboard();
+}
+
+setSimonSaysHighScore = (score) => {
+    console.log(score);
+    if(score > simonSaysScore){
+        simonSaysScore = score;
+        localStorage.setItem('simonSaysScore', simonSaysScore);
+    }
+    updateScoreboard();
+}
+
+updateScoreboard = () => {
+    $('#blackjackWins').text('Blackjack Wins: ' + blackjackWins);
+    $('#simonSaysHigh').text('Simon Says High Score: ' + simonSaysScore);
 }
 
 $( () => {
     $('.popoutButton').hide();
-    $('.navItem').on('mouseenter', (e) =>{
-    });
-    $('.navItem').on('mouseleave', (e) =>{
-    });
+    updateScoreboard(); 
 });
