@@ -10,6 +10,8 @@ let currentColor = 'red';
 
 
 const deal = () => { //Deals Cards to Player and Dealer
+    playerBust = false;
+    dealerBust = false;
     $('#deal').remove(); //Removes Deal Button
     playerDeal();
     dealerInitialDeal();
@@ -95,7 +97,6 @@ const reset = () => { //Resets the game and adds a deal button
 
     let $deal = $('<button>').text('Deal').attr('id', 'deal');
     $deal.on('click', () => {
-        playerBust = false;
         $('#winner').remove();
         $('.card').remove();
         $('.cardBack').remove();
