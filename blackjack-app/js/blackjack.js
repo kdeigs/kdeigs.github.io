@@ -63,8 +63,6 @@ const dealerPlay = () => { //Deals cards until the dealer hits 17 or higher
     if(calculate($('#dealerCards')) > 21){
         dealerBust = true;
     }
-    showWinner();
-    reset();
 }
 
 const hit = () => { //hits the player with another card if they haven't already bust
@@ -126,6 +124,8 @@ const stay = () => { //Needs to be refactored into different functions
     }else{
         showDealer();
     }
+    showWinner();
+    reset();
 }
 
 const calculate = (cardStack) => { //Calculates the total in a cardStack (player or dealer) and returns the current score of the hand

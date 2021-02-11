@@ -11,8 +11,8 @@ if(blackjackWins == null){
 
 increaseBlackjackWins = (winner) => {
     if(winner === 'player'){
-        currentWins++;
-        localStorage.setItem('blackjackWins', currentWins);
+        blackjackWins++;
+        localStorage.setItem('blackjackWins', blackjackWins);
     }
     updateScoreboard();
 }
