@@ -1,7 +1,8 @@
 let currentComputerSequence = [];
 let currentPlayerSequence = [];
 let currentRound;
-
+//sound by https://learningsolutionsmag.com/articles/coding-sound-with-javascript-beginner-s-guide
+//sound bytes from: Zapsplat and freeSoundLibrary and freesound.org
 const startGame = () => {
     currentComputerSequence = [];
     $('#start').remove();
