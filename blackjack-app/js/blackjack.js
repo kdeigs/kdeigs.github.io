@@ -35,7 +35,6 @@ const playerDeal = () => { //Deals 2 cards to the player
     randomSuit = suits[Math.floor(Math.random()*4)];
     let $cardTwo = $('<img>').attr('src', `./Cards/${randomCard}${randomSuit}.png`).addClass('card').attr('id', randomCard);
 
-
     $('#playerCards').append($cardOne, $cardTwo);
 }
 
@@ -62,6 +61,8 @@ const dealerPlay = () => { //Deals cards until the dealer hits 17 or higher
     if(calculate($('#dealerCards')) > 21){
         dealerBust = true;
     }
+    showWinner();
+    reset();
 }
 
 const hit = () => { //hits the player with another card if they haven't already bust
@@ -103,13 +104,6 @@ const reset = () => { //Resets the game and adds a deal button
     $('#buttons').append($deal);
 }
 
-const bust = () => { //Dead function. Need to refactor into different functions
-    playerBust = true;
-    showDealer();
-    showWinner();
-    reset();
-}
-
 const showWinner = () => { //Displays the winnner on the screen using the calcWin function
     let winner = calcWin();
     let $winnerCard;
@@ -129,8 +123,6 @@ const stay = () => { //Needs to be refactored into different functions
     }else{
         showDealer();
     }
-    showWinner();
-    reset();
 }
 
 const calculate = (cardStack) => { //Calculates the total in a cardStack (player or dealer) and returns the current score of the hand
