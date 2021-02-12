@@ -3,6 +3,7 @@
 
 This application consists of two parts, the first being a blackjack application, and the second being Simon Says.
 All attributions are listed in the code comments as well as at the bottom of the README.
+[Link to Project](./home.html)
 
 ##Blackjack Application
 
